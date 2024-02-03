@@ -1,0 +1,1730 @@
+paths:
+  /app/users/register:
+     post:
+      tags:
+        - User
+      summary:
+        - User Register
+      description:
+        - This API Register user.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : vikas.saini@arkasoftwares.com  
+                  user_name:
+                    type: string
+                    description: username
+                    example : vikashsaini
+                  password:
+                    type: string
+                    description: User password
+                    example : 123456789
+                required:
+                  - email
+                  - user_name
+                  - password
+      responses:
+        200:
+          description: OK
+
+  /app/users/verify-otp:
+     post:
+      tags:
+        - User
+      summary:
+        - User Verify otp
+      description:
+        - This API Verify otp user.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : vikas.saini@arkasoftwares.com  
+                  otp:
+                    type: integer
+                    description: otp
+                    example : 1234
+                required:
+                  - email
+                  - otp
+      responses:
+        200:
+          description: OK
+
+  /app/users/resend-otp:
+     post:
+      tags:
+        - User
+      summary:
+        - User Resend otp
+      description:
+        - This API Resend otp user.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : vikas.saini@arkasoftwares.com  
+                required:
+                  - email
+      responses:
+        200:
+          description: OK
+
+  /app/users/login:
+     post:
+      tags:
+        - User
+      summary:
+        - User Login
+      description:
+        - This API Login user.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : vikash.saini@arkasoftwares.com 
+                  password:
+                    type: string
+                    description: User password
+                    example : 123456789
+                required:
+                  - email
+                  - password
+      responses:
+        200:
+          description: OK
+
+  /app/users/social-login:
+     post:
+      tags:
+        - User
+      summary:
+        - User social-login
+      description:
+        - This API social-login user.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : vikash.saini@arkasoftwares.com 
+                  google_id:
+                    type: string
+                    description: User password
+                    example : googleid
+                  firstName:
+                    type: string
+                    description: User password
+                    example : googleid
+                  lastName:
+                    type: string
+                    description: User password
+                    example : googleid
+                  profile_image:
+                    type: string
+                    description: User password
+                    example : googleid
+                required:
+                  - email
+      responses:
+        200:
+          description: OK
+
+  /app/users/forgot-password:
+     post:
+      tags:
+        - User
+      summary:
+        - User Forgot password
+      description:
+        - This API user forgot password.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: User email
+                    example : govind.saini@arkasoftwares.com
+                required:
+                  - email
+      responses:
+        200:
+          description: OK
+
+  /app/users/update-password:
+     post:
+      tags:
+        - User
+      summary:
+        - User Update password
+      description:
+        - This API user Update password.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Email token
+                    example : cLimqsNkwPSI7xCbTyVd34SUj 
+                  password: 
+                    type: string
+                    description: Password
+                    example : "123456789"
+                  confirm_password: 
+                    type: string
+                    description: Password
+                    example : "123456789"
+                required:
+                  - token
+                  - password 
+                  - confirm_password 
+      responses:
+        200:
+          description: OK
+
+  /app/users/change-password:
+    post:
+      tags:
+        - User
+      summary:
+        - Change-Password
+      description:
+        - This Change-Password User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  current_password: 
+                    type: string
+                    description: current password
+                    example : "123456789"
+                  password: 
+                    type: string
+                    description: Password
+                    example : "123456789"
+                  confirm_password: 
+                    type: string
+                    description: Password
+                    example : "123456789"
+                required:
+                  - current_password
+                  - password
+                  - confirm_password
+      responses:
+        200:
+          description: OK
+
+  /app/users/logout:
+    post:
+      tags:
+        - User
+      summary:
+        - Logout
+      description:
+        - This Logout Loged in User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      responses:
+        200:
+          description: OK
+
+  /app/users/getcategory-list:
+    get:
+      tags:
+        - User
+      summary:
+        - category-list
+      description:
+        - This category-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/subcategory-list:
+    post:
+      tags:
+        - User
+      summary:
+        - subcategory-list
+      description:
+        - This subcategory-list User.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                    description: category id
+                    example : "1"
+                required:
+                  - id
+      responses:
+        200:
+          description: OK
+
+  /app/users/school-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - school-list
+      description:
+        - This school-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/course-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - course-list
+      description:
+        - This course-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/subject-list:
+    post:
+      tags:
+        - User
+      summary:
+        - subject-list
+      description:
+        - This subject-list User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                    description: course id
+                    example : "1"
+                required:
+                  - id
+      responses:
+        200:
+          description: OK
+
+  /app/users/country-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - country-list
+      description:
+        - This country-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/state-list:
+    post:
+      tags:
+        - User
+      summary:
+        - state-list
+      description:
+        - This state-list User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                    description: country id
+                    example : "1"
+                required:
+                  - id
+      responses:
+        200:
+          description: OK
+
+  /app/users/doc_upload:
+     post:
+      tags:
+        - User
+      summary:
+        - document upload
+      description:
+        - This document upload.
+      consumes:
+        - multipart/form-data
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                  file: 
+                    type: string
+                    description: doucument upload
+                    format : binary
+      responses:
+        200:
+          description: OK
+
+  /app/users/add-job-post:
+    post:
+      tags:
+        - User
+      summary:
+        - job post add
+      description:
+        - This Job post add User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  userid: 
+                    type: number
+                    description: User id
+                    example : "2"
+                  title: 
+                    type: string
+                    description: Title
+                    example : "job post"
+                  description: 
+                    type: string
+                    description: Description
+                    example : "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                  categoryid: 
+                    type: number
+                    description: category id
+                    example : "1"
+                  sub_cat_id: 
+                    type: number
+                    description: sub category id
+                    example : "1"
+                  school_id: 
+                    type: number
+                    description: school id
+                    example : "1"
+                  course_id: 
+                    type: number
+                    description: course id
+                    example : "1"
+                  subject_id: 
+                    type: number
+                    description: subject id
+                    example : "1"
+                  tags: 
+                    type: string
+                    description: tags id
+                    example : ["1","2","3"]
+                  document: 
+                    type: string
+                    description: document name
+                    example : "document"
+                  pages: 
+                    type: string
+                    description: page count
+                    example : "10"
+                  due_date: 
+                    type: string
+                    description: Due date
+                    example : "26/01/2000"
+                  budget: 
+                    type: string
+                    description: budget
+                    example : "100"
+                  country_id: 
+                    type: number
+                    description: country id
+                    example : "1"
+                  state_id: 
+                    type: number
+                    description: state id
+                    example : "1"
+                  writingservice: 
+                    type: number
+                    description: 1-wring 2-question
+                    example : "1"
+                  docs: 
+                    type: string
+                    description: upload document
+                    example : ["doc1","doc2","doc3","doc4"]
+                required:
+                  - userid
+                  - title
+                  - description
+                  - categoryid
+                  - sub_cat_id
+                  - school_id
+                  - course_id
+                  - subject_id
+                  - tags
+                  - document
+                  - pages
+                  - due_date
+                  - budget
+                  - country_id
+                  - state_id
+                  - writingservice
+                  - docs
+      responses:
+        200:
+          description: OK
+
+  /app/users/banner-listing:
+    get:
+      tags:
+        - User
+      summary:
+        - banner-list
+      description:
+        - This banner-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/skill-listing:
+    post:
+      tags:
+        - User
+      summary:
+        - skill-list
+      description:
+        - This skill-list User.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                required:
+                 - category_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/cmspage-view/{id}:
+     post:
+      tags:
+        - User
+      summary:
+        - Cms Page View
+      description:
+        - This Cms Page View.
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /app/users/tags-listing:
+    post:
+      tags:
+        - User
+      summary:
+        - Tags-listing
+      description:
+        - This Tags-list User.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                required:
+                 - category_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/get-user-data:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - User data list
+      description:
+        - This user data list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/job-view:
+    post:
+      tags:
+        - User
+      summary:
+        - job-view
+      description:
+        - This job-view User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                    description: job id
+                    example : "1"
+                required:
+                  - id
+      responses:
+        200:
+          description: OK
+
+  /app/users/job-addbid:
+    post:
+      tags:
+        - User
+      summary:
+        - job-bid add
+      description:
+        - This job-bid add User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  userid: 
+                    type: number
+                    description: job id
+                    example : "1"
+                  jobid: 
+                    type: number
+                    description: job bid id
+                    example : "1"
+                  bidamount: 
+                    type: number
+                    description: bid amount
+                    example : "100"
+                  deliverydate: 
+                    type: string
+                    description: delivery data
+                    example : "yyyy/mm/dd"
+                  proposal: 
+                    type: text
+                    description: proposal text
+                    example : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English"
+                  docs: 
+                    type: array
+                    description: docs url
+                    example : []
+                required:
+                  - userid
+                  - jobid
+                  - bidamount
+                  - deliverydate
+                  - proposal
+      responses:
+        200:
+          description: OK
+
+  /app/users/bid-view:
+    post:
+      tags:
+        - User
+      summary:
+        - bid-view
+      description:
+        - This bid-view User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  id: 
+                    type: number
+                    description: bid id
+                    example : "1"
+                required:
+                  - id
+      responses:
+        200:
+          description: OK
+
+  /app/users/cancel-bid:
+    post:
+      tags:
+        - User
+      summary:
+        - Cancel bid
+      description:
+        - This cancel bid User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  jobbid_id: 
+                    type: number
+                    description: bid id
+                    example : "1"
+                required:
+                  - jobbid_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/job-bids-list/{id}:
+     get:
+      tags:
+        - User
+      summary:
+        - Job bid list
+      description:
+        - This job bid list.
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+
+  /app/users/similarjob-list:
+    post:
+      tags:
+        - User
+      summary:
+        - Similar job-listing
+      description:
+        - This Similar job-list User.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                required:
+                 - category_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/education-listing:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - education-list
+      description:
+        - This education-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/city-listing:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - city-list
+      description:
+        - This city-list User.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 state_id: 
+                   type: number
+                   description: state id
+                   example : "1"
+                required:
+                 - state_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/card-add:
+    post:
+      tags:
+        - User
+      summary:
+        - Card add
+      description:
+        - This card add User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  cardNumber: 
+                    type: number
+                    description: card number
+                    example : "4000056655665556"
+                  expMonth: 
+                    type: number
+                    description: card expiry month
+                    example : "1"
+                  expYear: 
+                    type: number
+                    description: card expiry year
+                    example : "2023"
+                  cvc: 
+                    type: number
+                    description: card cvv
+                    example : "123"
+                  cardHoldername: 
+                    type: string
+                    description: card holder name
+                    example : "vikash saini" 
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                required:
+                  - cardNumber
+                  - expMonth
+                  - expYear
+                  - cardHoldername
+                  - customerId
+                  - cvc
+      responses:
+        200:
+          description: OK
+
+  /app/users/getall-card:
+    post:
+      tags:
+        - User
+      summary:
+        - Card list
+      description:
+        - This card list User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                required:
+                  - customerId
+      responses:
+        200:
+          description: OK
+
+  /app/users/delete-card:
+    post:
+      tags:
+        - User
+      summary:
+        - Card delete
+      description:
+        - This card delete .
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                  cardId: 
+                    type: string
+                    description: stripe card id
+                    example : "card_1MwkCADT9oMl24ASdQPjElbu"
+                required:
+                  - customerId
+                  - cardId
+      responses:
+        200:
+          description: OK
+
+  /app/users/card-update:
+    post:
+      tags:
+        - User
+      summary:
+        - Card update
+      description:
+        - This card update User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  cardId: 
+                    type: string
+                    description: card id
+                    example : "card_1MwkCADT9oMl24ASdQPjElbu"
+                  customerId: 
+                    type: string
+                    description: string customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                  cardHoldername: 
+                    type: string
+                    description: card holder name
+                    example : "vikash saini"
+                  expiry_year: 
+                    type: number
+                    description: card expiry year
+                    example : "2023"
+                  expiry_month: 
+                    type: number
+                    description: card expirty month
+                    example : "12" 
+                required:
+                  - cardId
+                  - customerId
+      responses:
+        200:
+          description: OK
+
+  /app/users/payment:
+    post:
+      tags:
+        - User
+      summary:
+        - Payment
+      description:
+        - This payment User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "2"
+                  plan_id: 
+                    type: number
+                    description: plan id
+                    example : "1"
+                  amount: 
+                    type: number
+                    description: payment amount
+                    example : "100"
+                  paymentSourceId: 
+                    type: string
+                    description: payment source id - it can be card or bank token
+                    example : "card_1MwkCADT9oMl24ASdQPjElbu"
+                  paymentSourceType: 
+                    type: string
+                    description: payment source type - 'card', 'bank'
+                    example : "card" 
+                  customerId: 
+                    type: string
+                    description: string customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                required:
+                  - user_id
+                  - plan_id
+                  - amount
+      responses:
+        200:
+          description: OK
+
+  /app/users/new_study_resource:
+    post:
+      tags:
+        - User
+      summary:
+        - Payment
+      description:
+        - This payment User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  plan_type: 
+                    type: string
+                    description: plan type
+                    example : "free"
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "2"
+                  plan_id: 
+                    type: number
+                    description: plan id
+                    example : "1"
+                  cardId: 
+                    type: string
+                    description: card id
+                    example : "card_1MwkCADT9oMl24ASdQPjElbu"
+                  customerId: 
+                    type: string
+                    description: string customer id
+                    example : "cus_Ni7Twamy6xaltf"
+                  amount: 
+                    type: number
+                    description: payment amount
+                    example : "100"
+                  description: 
+                    type: string
+                    description: payment description
+                    example : "my first payment" 
+                required:
+                  - cardId
+                  - customerId
+                  - amount
+                  - plan_type
+                  - user_id
+                  - plan_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/add-cart:
+    post:
+      tags:
+        - User
+      summary:
+        - cart add
+      description:
+        - This cart add User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  doc_type: 
+                    type: number
+                    description: 2-study_res 3-flashcard
+                    example : "3"
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "2"
+                  flash_card_id: 
+                    type: number
+                    description: flash card id
+                    example : "1"
+                required:
+                  - doc_type
+                  - user_id
+                  - flash_card_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/cart-list:
+    post:
+      tags:
+        - User
+      summary:
+        - cart list
+      description:
+        - This cart list User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "2"
+                required:
+                  - user_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/cart-item-delete:
+    post:
+      tags:
+        - User
+      summary:
+        - cart delete
+      description:
+        - This cart delete User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  cart_id: 
+                    type: number
+                    description: cart id
+                    example : "2"
+                required:
+                  - cart_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/address-add:
+    post:
+      tags:
+        - User
+      summary:
+        - address add
+      description:
+        - This address add User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "1"
+                  full_name: 
+                    type: string
+                    description: full name
+                    example : "vikash"
+                  phone_no: 
+                    type: string
+                    description: phone number
+                    example : "1122334455"
+                  address: 
+                    type: string
+                    description: address
+                    example : "jaipur"
+                  country_id: 
+                    type: number
+                    description: country id
+                    example : "1"
+                  state_id: 
+                    type: number
+                    description: state id
+                    example : "1"
+                  city_id: 
+                    type: number
+                    description: city id
+                    example : "1"
+                  zip_code: 
+                    type: number
+                    description: zip code
+                    example : "302020" 
+                required:
+                  - user_id
+                  - full_name
+                  - phone_no
+                  - address
+                  - country_id
+                  - state_id
+                  - city_id
+                  - zip_code
+      responses:
+        200:
+          description: OK
+
+  /app/users/address-update:
+    post:
+      tags:
+        - User
+      summary:
+        - address update
+      description:
+        - This address update User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "1"
+                  full_name: 
+                    type: string
+                    description: full name
+                    example : "vikash"
+                  phone_no: 
+                    type: string
+                    description: phone number
+                    example : "1122334455"
+                  address: 
+                    type: string
+                    description: address
+                    example : "jaipur"
+                  country_id: 
+                    type: number
+                    description: country id
+                    example : "1"
+                  state_id: 
+                    type: number
+                    description: state id
+                    example : "1"
+                  city_id: 
+                    type: number
+                    description: city id
+                    example : "1"
+                  zip_code: 
+                    type: number
+                    description: zip code
+                    example : "302020" 
+                required:
+                  - user_id
+                  - full_name
+                  - phone_no
+                  - address
+                  - country_id
+                  - state_id
+                  - city_id
+                  - zip_code
+      responses:
+        200:
+          description: OK
+
+  /app/users/address-delete:
+    post:
+      tags:
+        - User
+      summary:
+        - address delete
+      description:
+        - This address delete User.
+      consumes:
+        - application/json
+      security:
+          - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  address_id: 
+                    type: number
+                    description: address id
+                    example : "2"
+                required:
+                  - address_id
+      responses:
+        200:
+          description: OK
+
+  /app/users/address-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - address-list
+      description:
+        - This address-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/coupan-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User
+      summary:
+        - coupan-list
+      description:
+        - This coupan-list user.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /app/users/favorite:
+    post:
+      tags:
+        - User
+      summary:
+        - favorite
+      description:
+        - This favorite User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  user_id: 
+                    type: number
+                    description: user id
+                    example : "3"
+                  doc_type: 
+                    type: number
+                    description: doc type
+                    example : "2"
+                  doc_id: 
+                    type: number
+                    description: doc id
+                    example : "1"
+                  status: 
+                    type: number
+                    description: status
+                    example : "1"
+                required:
+                  - user_id
+                  - doc_type
+                  - doc_id
+                  - status
+      responses:
+        200:
+          description: OK
+
+  /app/users/cart-payment:
+    post:
+      tags:
+        - User
+      summary:
+        - cart payment
+      description:
+        - This cart payment User.
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  amount: 
+                    type: number
+                    description: amount
+                    example : "100"
+                  cardId: 
+                    type: string
+                    description: card id
+                    example : "card_1NQriCHIXLdlaW9ywQXosPch"
+                  customerId: 
+                    type: string
+                    description: customer id
+                    example : "cus_O5Q9jOVP6FbMpI"
+                required:
+                  - amount
+                  - cardId
+                  - customerId
+      responses:
+        200:
+          description: OK
+
+  /app/users/bankaccount-add:
+    post:
+      tags:
+        - User
+      summary:
+        - bankaccount-add
+      description:
+        - This adds the bank account for user
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_OiMEHV9blc4Kwp"
+                  user_id: 
+                    type: integer
+                    description: user id
+                    example : "2"
+                  account_holder_name: 
+                    type: string
+                    description: account holder name
+                    example : "Kajal Gupta"
+                  routing_number: 
+                    type: string
+                    description: routing number
+                    example : "110000000"
+                  account_number: 
+                    type: string
+                    description: account number
+                    example : "000999999991"
+                required:
+                  - customerId
+                  - user_id
+                  - account_holder_name
+                  - routing_number
+                  - account_number
+      responses:
+        200:
+          description: OK
+
+  /app/users/bankaccount-verify:
+    post:
+      tags:
+        - User
+      summary:
+        - bankaccount-verify
+      description:
+        - This verify the bank account of user
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_OiMEHV9blc4Kwp"
+                  bankAccountId: 
+                    type: string
+                    description: bank account token
+                    example : "ba_1NuwdRDT9oMl24ASI3lWqNhm"
+                  amount_1: 
+                    type: string
+                    description: amount 1 (Received by stripe in bank account)
+                    example : "32"
+                  amount_2: 
+                    type: string
+                    description: amount 2 (Received by stripe in bank account)
+                    example : "45"
+                required:
+                  - customerId
+                  - bankAccountId
+                  - amount_1
+                  - amount_2
+      responses:
+        200:
+          description: OK
+
+  /app/users/bankaccount-update:
+    post:
+      tags:
+        - User
+      summary:
+        - bankaccount-update
+      description:
+        - This updates the bank account of user
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_OiMEHV9blc4Kwp"
+                  bank_account_id: 
+                    type: string
+                    description: bank account token
+                    example : "ba_1NuwdRDT9oMl24ASI3lWqNhm"
+                  user_id: 
+                    type: integer
+                    description: user id
+                    example : "2"
+                  account_holder_name: 
+                    type: string
+                    description: account holder name
+                    example : "Kajal Gupta"
+                  routing_number: 
+                    type: string
+                    description: routing number
+                    example : "110000000"
+                  account_number: 
+                    type: string
+                    description: account number
+                    example : "000999999991"
+                required:
+                  - customerId
+                  - bank_account_id
+                  - user_id
+                  - account_holder_name
+                  - routing_number
+                  - account_number
+      responses:
+        200:
+          description: OK
+
+  /app/users/bankaccount-delete:
+    post:
+      tags:
+        - User
+      summary:
+        - bankaccount-delete
+      description:
+        - This deletes the bank account of user
+      consumes:
+        - application/json
+      security:
+         - bearerAuth: []
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                  customerId: 
+                    type: string
+                    description: stripe customer id
+                    example : "cus_OiMEHV9blc4Kwp"
+                  bank_account_id: 
+                    type: string
+                    description: bank account token
+                    example : "ba_1NuwdRDT9oMl24ASI3lWqNhm"
+                required:
+                  - customerId
+                  - bank_account_id
+      responses:
+        200:
+          description: OK
+

@@ -1,0 +1,1589 @@
+paths:
+  /admin/login:
+    post:
+      tags:
+        - Admin
+      summary:
+        - Admin Login
+      description:
+        - This API Login Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+                  example : gradstock@yopmail.com  
+                password:
+                  type: string
+                  description: User password
+                  example : "Admin@123"
+              required:
+                - email
+                - password
+      responses:
+        200:
+          description: OK
+
+  /admin/forgot-password:
+    post:
+      tags:
+        - Admin
+      summary:
+        - Admin Forgot password
+      description:
+        - This API Admin forgot password.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+           schema:
+              type: object
+              properties:
+               email:
+                 type: string
+                 description: User email
+                 example : gradstock@yopmail.com
+              required:
+                - email
+      responses:
+        200:
+          description: OK
+
+  /admin/update-password:
+     post:
+      tags:
+        - Admin
+      summary:
+        - Admin Update password
+      description:
+        - This API Admin Update password.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: Email token
+                  example : cLimqsNkwPSI7xCbTyVd34SUj 
+                password: 
+                  type: string
+                  description: Password
+                  example : "123456789"
+                confirm_password: 
+                  type: string
+                  description: Password
+                  example : "123456789"
+              required:
+                  - token
+                  - password 
+                  - confirm_password  
+      responses:
+        200:
+          description: OK
+
+  /admin/change-password:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - Change-Password
+      description:
+        - This Change-Password Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 current_password: 
+                   type: string
+                   description: current password
+                   example : "123456789"
+                 password: 
+                   type: string
+                   description: Password
+                   example : "123456789"
+                 confirm_password: 
+                   type: string
+                   description: Password
+                   example : "123456789"
+                required:
+                 - token
+                 - password 
+                 - confirm_password  
+      responses:
+        200:
+          description: OK
+
+  /admin/category-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - category-add
+      description:
+        - This category-add Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 category_name: 
+                   type: string
+                   description: category name
+                   example : "business"
+                 cat_image: 
+                   type: string
+                   description: image
+                   example : "image"
+                   format : binary  
+                required:
+                 - category_name
+                 - cat_image
+      responses:
+        200:
+          description: OK
+
+  /admin/category-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - category-list
+      description:
+        - This category-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/category-status-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - category-status-update
+      description:
+        - This category-status-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: id
+                   example : "1"
+                 status: 
+                   type: number
+                   description: status
+                   example : "1"
+                required:
+                 - id
+                 - status
+      responses:
+        200:
+          description: OK
+
+  /admin/subcategory-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - category-add
+      description:
+        - This category-add Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 cat_id: 
+                   type: integer
+                   description: category id
+                   example : "1"
+                 sub_cat_name: 
+                   type: string
+                   description: sub category name
+                   example : "ecnomics"
+                 sub_cat_image: 
+                   type: string
+                   description: sub category image
+                   example : "sub category image upload"
+                   format : binary 
+                required:
+                 - cat_id
+                 - sub_cat_name
+      responses:
+        200:
+          description: OK
+
+  /admin/school-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - school-add
+      description:
+        - This school-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 school_name: 
+                   type: string
+                   description: school name
+                   example : "Nirja modi"
+                required:
+                 - school_name
+      responses:
+        200:
+          description: OK
+
+  /admin/school-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - school-list
+      description:
+        - This school-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/school-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - school-update
+      description:
+        - This school-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: school id
+                   example : "1"
+                 school_name: 
+                   type: string
+                   description: school name
+                   example : "Nirja modi"
+                required:
+                 - school_name
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/course-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - course-add
+      description:
+        - This course-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 course_name: 
+                   type: string
+                   description: course name
+                   example : "MCA"
+                required:
+                 - course_name
+      responses:
+        200:
+          description: OK
+
+  /admin/course-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - course-list
+      description:
+        - This course-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/course-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - course-update
+      description:
+        - This course-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: course id
+                   example : "1"
+                 course_name: 
+                   type: string
+                   description: course name
+                   example : "bca"
+                required:
+                 - course_name
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/subject-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - subject-add
+      description:
+        - This subject-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 course_id: 
+                   type: number
+                   description: course id
+                   example : "1"
+                 subject_name: 
+                   type: string
+                   description: subject name
+                   example : "english"
+                required:
+                 - course_name
+      responses:
+        200:
+          description: OK
+
+  /admin/subject-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - subject-list
+      description:
+        - This subject-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/subject-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - subject-update
+      description:
+        - This subject-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: subject id
+                   example : "1"
+                 course_id: 
+                   type: number
+                   description: course id
+                   example : "1"
+                 subject_name: 
+                   type: string
+                   description: subject name
+                   example : "english"
+                required:
+                 - subject_name
+                 - id
+                 - course_id
+      responses:
+        200:
+          description: OK
+
+  /admin/country-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - country-add
+      description:
+        - This country-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 country_name: 
+                   type: string
+                   description: country name
+                   example : "India"
+                required:
+                 - country_name
+      responses:
+        200:
+          description: OK
+
+  /admin/country-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - country-update
+      description:
+        - This country-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: country id
+                   example : "1"
+                 country_name: 
+                   type: string
+                   description: country_name 
+                   example : "china"
+                required:
+                 - country_name
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/country-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - country-list
+      description:
+        - This country-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/state-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - state-add
+      description:
+        - This state-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 country_id: 
+                   type: number
+                   description: country id
+                   example : "1"
+                 state_name: 
+                   type: string
+                   description: state name
+                   example : "rajasthan"
+                required:
+                 - country_id
+                 - state_name
+      responses:
+        200:
+          description: OK
+
+  /admin/state-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - state-list
+      description:
+        - This state-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/state-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - state-update
+      description:
+        - This state-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: state id
+                   example : "1"
+                 country_id: 
+                   type: number
+                   description: country id 
+                   example : "1"
+                 state_name: 
+                   type: string
+                   description: state name 
+                   example : "Rajasthan"
+                required:
+                 - state_name
+                 - id
+                 - country_id
+      responses:
+        200:
+          description: OK
+
+  /admin/banner-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - banner-add
+      description:
+        - This banner-add Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 title: 
+                   type: string
+                   description: title
+                   example : "banner title"
+                 sub_title: 
+                   type: text
+                   description: sub title
+                   example : "banner sub title"
+                 image: 
+                    type: string
+                    description: image upload
+                    format : binary    
+                required:
+                 - title
+                 - sub_title
+                 - image
+      responses:
+        200:
+          description: OK
+
+  /admin/banner-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - banner-update
+      description:
+        - This banner-update Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: id
+                   example : "1"
+                 title: 
+                   type: string
+                   description: title
+                   example : "banner title"
+                 sub_title: 
+                   type: text
+                   description: sub title
+                   example : "banner sub title"
+                 image: 
+                    type: string
+                    description: image upload
+                    format : binary    
+                required:
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/banner-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - banner-list
+      description:
+        - This banner-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/skill-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - skill-add
+      description:
+        - This skill-add Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 sub_cat_id: 
+                   type: integer
+                   description: sub category id
+                   example : "1"
+                 skill_name: 
+                   type: string
+                   description: skill name
+                   example : "ecnomics"
+                required:
+                 - sub_cat_id
+                 - skill_name
+      responses:
+        200:
+          description: OK
+
+  /admin/skill-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - banner-list
+      description:
+        - This banner-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/skill-status-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - skill-status-update
+      description:
+        - This skill-status-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: id
+                   example : "1"
+                 status: 
+                   type: number
+                   description: status
+                   example : "1"
+                required:
+                 - id
+                 - status
+      responses:
+        200:
+          description: OK
+
+  /admin/cms-create:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - cms-add
+      description:
+        - This cms-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 title: 
+                   type: string
+                   description: title
+                   example : "faq"
+                 slug: 
+                   type: string
+                   description: slug name
+                   example : "/faq"
+                 description: 
+                   type: text
+                   description: description
+                   example : "all description"
+                required:
+                 - title
+                 - slug
+                 - description
+      responses:
+        200:
+          description: OK
+
+  /admin/cms-view:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - cms-view
+      description:
+        - This cms-view Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 cms_id: 
+                   type: number
+                   description: cms id
+                   example : "1"
+                required:
+                 - cms_id
+      responses:
+        200:
+          description: OK
+
+  /admin/cms-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - cms-update
+      description:
+        - This cms-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 cms_id: 
+                   type: number
+                   description: cms id
+                   example : "1"
+                 title: 
+                   type: string
+                   description: title
+                   example : "faq"
+                 slug: 
+                   type: string
+                   description: slug
+                   example : "/faq"
+                 description: 
+                   type: text
+                   description: description
+                   example : "faq"
+                required:
+                 - cms_id
+      responses:
+        200:
+          description: OK
+
+  /admin/cms-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - cms-list
+      description:
+        - This cms-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/blog-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - blog-add
+      description:
+        - This blog-add Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                 title: 
+                   type: string
+                   description: title
+                   example : "banner title"
+                 description: 
+                   type: text
+                   description: description
+                   example : "banner description"
+                 image: 
+                    type: string
+                    description: image upload
+                    format : binary    
+                required:
+                 - category_id
+                 - title
+                 - description
+                 - image
+      responses:
+        200:
+          description: OK
+
+  /admin/blog-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - blog-update
+      description:
+        - This blog-update Admin.
+      consumes:
+        - multipart/form-data
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: id
+                   example : "1"
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                 title: 
+                   type: string
+                   description: title
+                   example : "banner title"
+                 description: 
+                   type: text
+                   description: description
+                   example : "banner description"
+                 image: 
+                    type: string
+                    description: image upload
+                    format : binary    
+                required:
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/blog-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - blog-list
+      description:
+        - This blog-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/tag-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - tag-add
+      description:
+        - This tag-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 category_id: 
+                   type: number
+                   description: category id
+                   example : "1"
+                 tag_name: 
+                   type: string
+                   description: tag name
+                   example : "social"
+                required:
+                 - category_id
+                 - tag_name
+      responses:
+        200:
+          description: OK
+
+  /admin/tags-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - blog-list
+      description:
+        - This blog-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/tags-status-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - tags-status-update
+      description:
+        - This tags-status-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: tag id
+                   example : "1"
+                 status: 
+                   type: number
+                   description: status
+                   example : "1"
+                required:
+                 - id
+                 - status
+      responses:
+        200:
+          description: OK
+
+  /admin/education-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - education-add
+      description:
+        - This education-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 edu_name: 
+                   type: string
+                   description: education name
+                   example : "mca"
+                required:
+                 - edu_name
+      responses:
+        200:
+          description: OK
+
+  /admin/education-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - education-list
+      description:
+        - This education-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/city-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - city-add
+      description:
+        - This city-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 state_id: 
+                   type: number
+                   description: state id
+                   example : "1"
+                 city_name: 
+                   type: string
+                   description: city name
+                   example : "jaipur"
+                required:
+                 - state_id
+                 - city_name
+      responses:
+        200:
+          description: OK
+
+  /admin/city-list:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - city-list
+      description:
+        - This city-list Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 state_id: 
+                   type: number
+                   description: state id
+                   example : "1"
+                required:
+                 - state_id
+      responses:
+        200:
+          description: OK
+
+  /admin/buyer-user-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - Buyer user-list
+      description:
+        - This Byuer-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/expert-user-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - Expert user-list
+      description:
+        - This Expert-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/newrequest-expert-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - New request Expert user-list
+      description:
+        - This New request Expert-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/expert-request-approve:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - Expert-request-approve
+      description:
+        - This Expert-request-approve Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: user id
+                   example : "2"
+                 status: 
+                   type: number
+                   description: 1-active 2-reject
+                   example : "1"
+                required:
+                 - id
+                 - status
+      responses:
+        200:
+          description: OK
+
+  /admin/coupan-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - coupan-add
+      description:
+        - This coupan-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 title: 
+                   type: string
+                   description: title
+                   example : "test"
+                 description: 
+                   type: string
+                   description: description
+                   example : "social"
+                 expiry_date: 
+                   type: string
+                   description: expiry date
+                   example : "2023-05-15"
+                 discount: 
+                   type: number
+                   description: discount amount
+                   example : "100"
+                required:
+                 - title
+                 - description
+                 - expiry_date
+                 - discount
+      responses:
+        200:
+          description: OK
+
+  /admin/coupan-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - coupan-list
+      description:
+        - This coupan-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/coupan-status-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - coupan-status-update
+      description:
+        - This coupan-status-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: coupan id
+                   example : "1"
+                 status: 
+                   type: number
+                   description: status
+                   example : "1"
+                required:
+                 - id
+                 - status
+      responses:
+        200:
+          description: OK
+
+  /admin/plan-add:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - plan-add
+      description:
+        - This plan-add Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 name: 
+                   type: string
+                   description: plan name
+                   example : "Gold Plan"
+                 plan_type: 
+                   type: string
+                   description: plan type - Free, Paid
+                   example : "Paid"
+                 total_price: 
+                   type: integer
+                   description: total price
+                   example : "50"
+                 description: 
+                   type: string 
+                   description: plan description
+                   example : ["Testtt freeee", "Testtt freeee133"]
+                 duration: 
+                   type: integer 
+                   description: plan duration
+                   example : "2"
+                required:
+                 - name
+                 - plan_type
+                 - total_price
+                 - description
+                 - duration
+      responses:
+        200:
+          description: OK
+
+  /admin/plan-list:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - plan-list
+      description:
+        - This plan-list Admin.
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  /admin/plan-update:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - plan-update
+      description:
+        - This plan-update Admin.
+      consumes:
+        - application/json
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+                type: object
+                properties:
+                 id: 
+                   type: number
+                   description: plan id
+                   example : "1"
+                 name: 
+                   type: string
+                   description: plan name
+                   example : "Gold Plan"
+                 plan_type: 
+                   type: string
+                   description: plan type - Free, Paid
+                   example : "Paid"
+                 total_price: 
+                   type: integer
+                   description: total price
+                   example : "50"
+                 description: 
+                   type: string 
+                   description: plan description
+                   example : ["Testtt freeee", "Testtt freeee133"]
+                 duration: 
+                   type: integer 
+                   description: plan duration
+                   example : "2"
+                required:
+                 - school_name
+                 - id
+      responses:
+        200:
+          description: OK
+
+  /admin/plan-update-status/{paramName}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Admin
+      summary:
+        - plan-update-status
+      description:
+        - This  plan-update-status Admin.
+      consumes:
+        - application/json
+      parameters:
+      - name: paramName
+        in: path
+        required: true
+        description: plan id
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
