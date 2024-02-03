@@ -407,14 +407,6 @@ const convertedfil = async (files_detail) => {
 const uploadToS3 = async (file, bucket, folder_name, file_name) => {
     // console.log('file', file);
     return new Promise((resolve, reject) => {
-        // Create S3 service object
-        // const s3 = new AWS.S3({
-        //     apiVersion: '2006-03-01',
-        //     version: 'latest',
-        //     region: 'us-east-2',
-        //     accessKeyId: "AKIAZ6XC4QBF3TTTURFW",
-        //     secretAccessKey: "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"
-        // });
         const s3 = new AWS.S3({
             //   apiVersion: `${env.apiVersion}`,
             //   version: `${env.version}`,
